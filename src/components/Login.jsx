@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/slices/authSlice';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
-const Login = ({ onLoginSuccess }) => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // Use useNavigate
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(login({ email }));
-    onLoginSuccess();
+    dispatch(login({ email })); // Dispatch the login action
+    navigate('/'); // Navigate to the dashboard
   };
 
   return (
@@ -53,10 +54,6 @@ const Login = ({ onLoginSuccess }) => {
       </div>
     </div>
   );
-};
-
-Login.propTypes = {
-  onLoginSuccess: PropTypes.func.isRequired,
 };
 
 export default Login;

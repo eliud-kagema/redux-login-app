@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 
 const App = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  console.log('isAuthenticated:', isAuthenticated); // Debugging
 
   return (
     <Router>
@@ -16,7 +17,7 @@ const App = () => {
         />
         <Route
           path="/login"
-          element={!isAuthenticated ? <Login onLoginSuccess={() => window.location.reload()} /> : <Navigate to="/" />}
+          element={!isAuthenticated ? <Login /> : <Navigate to="/" />}
         />
       </Routes>
     </Router>
