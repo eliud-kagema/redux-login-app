@@ -52,3 +52,10 @@ To run this project locally, follow these steps:
 ```bash
 git clone https://github.com/your-username/redux-login-app.git
 cd redux-login-app
+
+
+
+### Run the Development Server
+
+```bash
+npm run dev
