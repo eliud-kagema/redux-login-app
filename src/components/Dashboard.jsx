@@ -4,10 +4,14 @@ import { logout } from '../redux/slices/authSlice';
 import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
+  // Get the user object from Redux state
   const user = useSelector((state) => state.auth.user);
+
+  // Redux dispatch and router navigation
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // Handle user logout
   const handleLogout = () => {
     dispatch(logout());
     navigate('/login'); // Redirect to login page after logout
@@ -15,33 +19,51 @@ const Dashboard = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
+      {/* Header Section */}
       <header className="bg-blue-600 text-white p-4">
         <h1 className="text-2xl font-bold">Welcome, {user?.email}</h1>
         <button
-          className="bg-red-500 text-white px-4 py-2 rounded mt-4"
+          className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none"
           onClick={handleLogout}
         >
           Logout
         </button>
       </header>
+
+      {/* Main Content Section */}
       <main className="flex-grow p-6">
         <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-xl">
-          <h1 className="text-3xl font-bold text-gray-800 mb-6">Dashboard</h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-blue-100 p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Analytics</h2>
-              <p className="text-gray-600">View your performance metrics and analytics here.</p>
+          <h1 className="mb-6 text-3xl font-bold text-gray-800">Dashboard</h1>
+
+          {/* Grid Layout for Dashboard Cards */}
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {/* Analytics Card */}
+            <div className="p-6 bg-blue-100 rounded-lg shadow-md">
+              <h2 className="mb-4 text-xl font-semibold text-gray-800">Analytics</h2>
+              <p className="text-gray-600">
+                View your performance metrics and analytics here.
+              </p>
             </div>
-            <div className="bg-green-100 p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Settings</h2>
-              <p className="text-gray-600">Manage your account settings and preferences.</p>
+
+            {/* Settings Card */}
+            <div className="p-6 bg-green-100 rounded-lg shadow-md">
+              <h2 className="mb-4 text-xl font-semibold text-gray-800">Settings</h2>
+              <p className="text-gray-600">
+                Manage your account settings and preferences.
+              </p>
             </div>
-            <div className="bg-yellow-100 p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Notifications</h2>
-              <p className="text-gray-600">Check your latest notifications and updates.</p>
+
+            {/* Notifications Card */}
+            <div className="p-6 bg-yellow-100 rounded-lg shadow-md">
+              <h2 className="mb-4 text-xl font-semibold text-gray-800">Notifications</h2>
+              <p className="text-gray-600">
+                Check your latest notifications and updates.
+              </p>
             </div>
-            <div className="bg-red-100 p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Support</h2>
+
+            {/* Support Card */}
+            <div className="p-6 bg-red-100 rounded-lg shadow-md">
+              <h2 className="mb-4 text-xl font-semibold text-gray-800">Support</h2>
               <p className="text-gray-600">Get help and support from our team.</p>
             </div>
           </div>
